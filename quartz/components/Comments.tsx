@@ -35,22 +35,22 @@ export default ((opts: Options) => {
     }
 
     return (
-      <div
-        class={classNames(displayClass, "giscus")}
-        data-repo={opts.options.repo}
-        data-repo-id={opts.options.repoId}
-        data-category={opts.options.category}
-        data-category-id={opts.options.categoryId}
-        data-mapping={opts.options.mapping ?? "url"}
-        data-strict={boolToStringBool(opts.options.strict ?? true)}
-        data-reactions-enabled={boolToStringBool(opts.options.reactionsEnabled ?? true)}
-        data-input-position={opts.options.inputPosition ?? "bottom"}
-        data-light-theme={opts.options.lightTheme ?? "light"}
-        data-dark-theme={opts.options.darkTheme ?? "dark"}
-        data-theme-url={
-          opts.options.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`
-        }
-      ></div>
+      <script
+        src="https://giscus.app/client.js"
+        data-repo="Grecil/digital-garden"
+        data-repo-id="R_kgDON7IJyw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDON7IJy84CnDcC"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="noborder_dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+      ></script>
     )
   }
 
