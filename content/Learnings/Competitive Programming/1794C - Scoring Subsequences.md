@@ -9,7 +9,7 @@ tags:
 ---
 # Introduction
 
-This is one of my favourite problems on Codeforces. I solved this problem when I had just started with Codeforces. Solving this problem during the live contest as a newbie, unaware of concepts like dynamic programming or binary search gave me an immense confidence boost. After the contest I found out that my solution was the shortest and simplest solution to the problem, more efficient than even the editorial.
+This is one of my favourite problems on Codeforces. I solved this problem when I had just started with Codeforces. Solving this problem during the live contest as a newbie, unaware of concepts like dynamic programming or binary search gave me a massive confidence boost. After the contest I found out that my solution was the shortest and simplest solution to the problem, more efficient than even the editorial.
 # Statement
 
 The score of a sequence $[s_1, s_2, \ldots, s_d]$ is defined as 

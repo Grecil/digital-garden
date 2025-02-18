@@ -17,44 +17,22 @@ As a follow-up to our **Binary Search Brilliance** event at **GDG On Campus, VIT
 
 ## Problem Understanding
 
-Given a sequence of `n` integers and an integer `k`, we need to find the **smallest number `x`** in the range `[1, 10^9]` such that **exactly** `k` elements of the sequence are less than or equal to `x`.
+We need to find the **smallest number `x`** in the range `[1, 10^9]` such that **exactly `k` elements** in the given sequence are **less than or equal to `x`**.
 
-If no such `x` exists, we should output `-1`. The sequence **may contain duplicate elements**, so we must carefully ensure we count elements correctly.
-
-### Constraints Analysis
-
-- The sequence can be **large** (`n` up to `2 × 10^5`), so **brute force sorting** and iterating might be too slow.
-- The values in the sequence can go up to `10^9`, meaning an **O(n log n)** sorting approach is feasible.
-- We need an efficient way to count the number of elements `≤ x` for different values of `x`.
-
-### Observations
-
-- If we sort the sequence, we can **quickly determine** how many elements are `≤ x`.
-- The problem is essentially asking for the **k-th smallest element** in a sorted sequence.
-- A binary search approach on possible values of `x` is a natural fit since the sequence has an implicit ordering when sorted.
+If no such `x` exists, we print `-1`.
 
 ---
-## Solution Approach
+## Approach
 
-### Step 1: Sorting the Sequence
+### **Step 1: Binary Search on `x`**
 
-Since the order of elements does not matter, we start by sorting the sequence in **O(n log n)**.
+We use **binary search** on `x` (the candidate threshold) within the range `[1, 10^9]`.
 
-### Step 2: Binary Search on `x`
-
-We perform **binary search** on `x` in the interval `[1, 10^9]` to find the smallest value that satisfies the condition.
-
-1. **Define the function** `nums_less_than(x)`, which returns the count of elements `≤ x` in **O(n)** time.
-2. Start with `low = 1` and `high = 10^9`, performing binary search:
-    - Compute `mid = (low + high) // 2`.
-    - If `nums_less_than(mid) < k`, it means `mid` is **too small**, so move `low` up (`low = mid + 1`).
-    - Otherwise, move `high` down (`high = mid - 1`).
-3. After the binary search, check if `nums_less_than(low) == k`, and if so, print `low`. Otherwise, print `-1`.
-
-### Step 3: Edge Cases
-
-- If `k == 0`, we must ensure there is **no number `x` such that nums_less_than(x) = 0`.** If all elements are` > 1`, output` 1`, otherwise` -1`.
-- If `k == n`, return `arr[n-1]`, as all numbers should be counted.
+1. Define a function `nums_less_than(x)`, which counts how many numbers in `arr` are **≤ x**.
+2. Perform **binary search** to find the smallest `x` for which `nums_less_than(x) == k`.
+    - If `nums_less_than(mid) < k`, increase `low`.
+    - Otherwise, decrease `high` and continue searching.
+3. **After binary search**, check if `nums_less_than(low) == k` before returning the answer.
 
 ---
 ## Code Implementation
@@ -63,38 +41,30 @@ We perform **binary search** on `x` in the interval `[1, 10^9]` to find the smal
 n, k = map(int, input().split())
 arr = list(map(int, input().split()))
 
-# Sorting is necessary to determine the k-th smallest element
-arr.sort()
+low = 1
+high = 10**9
 
-# Binary search on the sorted list
-low, high = 1, 10**9
+# Function to count elements <= x
+nums_less_than = lambda x: sum(i <= x for i in arr)
 
+# Binary search on x
 while low <= high:
-    mid = (low + high) // 2
-    # Count elements <= mid
-    count = sum(1 for num in arr if num <= mid)
-    
-    if count < k:
+    mid = low + (high - low) // 2
+    if nums_less_than(mid) < k:
         low = mid + 1
     else:
         high = mid - 1
 
-# Validate the result
-if k == 0:
-    print(1 if arr[0] > 1 else -1)
-elif low > 10**9 or sum(1 for num in arr if num <= low) != k:
-    print(-1)
-else:
-    print(low)
+# Verify if found x is valid
+print(low if nums_less_than(low) == k else -1)
 ```
 
 ---
 ## Complexity Analysis
 
-- **Sorting:** `O(n log n)`
-- **Binary Search:** `O(log 10^9) = O(30)`
-- **Counting Elements `≤ x`:** `O(n)` per search step
-- **Total Complexity:** `O(n log n) + O(n log 10^9) ≈ O(n log n)`
+1. **Binary Search on `x`** → `O(log 10^9) = O(30)`.
+2. **Counting `nums_less_than(x)` per iteration** → `O(n)`.
+3. **Total Complexity** → `O(n log 10^9) ≈ O(30n)`, which is efficient for `n ≤ 200,000`.
 
 ---
 # B. Range Query Test (Easy Version)
@@ -428,13 +398,13 @@ print(low % (10**9 + 7))
 ---
 ## Complexity Analysis
 
-1. **Binary Search on `X`**
+3. **Binary Search on `X`**
     - We search over a range `[min(a, b), n * min(a, b)]`.
     - Since `a, b ≤ 40,000`, the maximum search space is at most **10¹⁴**.
     - Binary search runs in **O(log 10¹⁴) ≈ O(45)** operations.
-2. **Computing `count_multiples(X)`**
+4. **Computing `count_multiples(X)`**
     - Each call takes **O(1)** time using division and LCM.
-3. **Total Complexity**
+5. **Total Complexity**
     - **Binary Search Calls:** `O(log (n * min(a, b)))`
     - **Each Call:** `O(1)`
     - **Final Complexity:** `O(log (n * min(a, b))) ≈ O(45)`, which is **very efficient** for large inputs.
