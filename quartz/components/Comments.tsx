@@ -35,8 +35,8 @@ export default ((opts: Options) => {
     }
 
     return (
-      <script
-        src="https://giscus.app/client.js"
+      <div
+        className="giscus"
         data-repo="Grecil/digital-garden"
         data-repo-id="R_kgDON7IJyw"
         data-category="Announcements"
@@ -46,12 +46,18 @@ export default ((opts: Options) => {
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
-        data-theme="noborder_dark"
+        data-light-theme="noborder_light"
+        data-dark-theme="noborder_dark"
+        data-theme-url="https://giscus.app/themes"
         data-lang="en"
-        crossorigin="anonymous"
-        async
-      ></script>
-    )
+      >
+        <script
+          src="https://giscus.app/client.js"
+          crossorigin="anonymous"
+          async
+        ></script>
+      </div>
+    )    
   }
 
   Comments.afterDOMLoaded = script
