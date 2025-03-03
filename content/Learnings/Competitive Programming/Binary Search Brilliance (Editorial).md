@@ -84,7 +84,7 @@ To optimize the solution, we **sort the array first** and use **binary search** 
 2. **Use Binary Search (`bisect`) for Efficient Querying**:
     - `bisect_left(arr, l)`: Finds the **first index** where `arr[i] ≥ l`.
     - `bisect_right(arr, r)`: Finds the **first index** where `arr[i] > r`.
-    - The count of numbers in `[l, r]` is given by: \text{count} = \text{bisect_right}(arr, r) - \text{bisect_left}(arr, l)
+    - The count of numbers in `[l, r]` is given by: $\text{count} = \text{bisect\_right}(arr, r) - \text{bisect\_left}(arr, l)$
     - Each query is processed in **O(log n)** time.
 3. **Answer all queries efficiently**:
     - We store results in a list and print them all at once (`O(k)`).
@@ -360,7 +360,7 @@ We need to compute the answer **modulo (10⁹ + 7)** to prevent overflow and kee
 - We know that the **n-th magical number** lies between:
     - **Lower bound:** `min(a, b)`
     - **Upper bound:** `n * min(a, b)`
-- Using **binary search**, we find the smallest `X` where: count_multiples(X)≥n\text{count\_multiples}(X) \geq n
+- Using **binary search**, we find the smallest `X` where: $\text{count\_multiples}(X) \geq n$
 - This ensures we find the **exact n-th magical number** efficiently.
 ### **Step 2: Implement Binary Search**
 
