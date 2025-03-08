@@ -6,6 +6,7 @@ tags:
   - greedy
   - binary-search
   - learnings
+date: 2025-02-16
 ---
 # Introduction
 
@@ -102,15 +103,7 @@ the cost is defined as the maximum length of a suffix of
 $$
 \frac{s_1}{\ell},\ \frac{s_2}{\ell-1},\ \ldots,\ \frac{s_\ell}{1}
 $$
- 
 such that each element is at least $1$ (which ensures that the score/product is maximized).
-
-A key intuition that helped simplify the solution was to instead reframe this transformation as 
-$$
-\frac{s_1}{1},\ \frac{s_2}{2},\ \ldots,\ \frac{s_\ell}{\ell}.
-$$
-  
-This equivalent view lets us process the sequence from left to right.
 
 The core idea is to maintain a counter $c$, representing the current cost (i.e. the maximum length we can achieve for the prefix). For each new element, we try to extend our valid suffix of the transformed sequence by checking whether the candidate element (which will become the smallest element in the new suffix) satisfies:
 $$
@@ -144,11 +137,7 @@ Code Breakdown:
    $$If true, the candidate is strong enough (after the division by $c+1$) to keep every element in the suffix at least $1$, allowing us to increment $c$.
 4. We append the current cost to the result for every prefix.
 
-This approach efficiently computes each prefix's cost in a single pass, leveraging the intuition from the alternative view of the transformation:
-$$
-\frac{s_1}{1},\ \frac{s_2}{2},\ \ldots,\ \frac{s_\ell}{\ell}.
-$$
-It runs in $\mathcal{O}(n)$ per test case.
+This approach efficiently computes each prefix's cost in a single pass, giving a time complexity of $\mathcal{O}(n)$ per test case.
 
 ---
 *If you have any doubts or suggestions or just want to interact with me, use the comment section below (Refresh if comments don't load)*

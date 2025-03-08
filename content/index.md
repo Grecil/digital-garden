@@ -4,6 +4,7 @@ tags:
   - projects
   - thoughts
   - learnings
+date: 2025-02-16
 ---
 
 # Welcome to My Digital Garden
