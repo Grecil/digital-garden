@@ -23,7 +23,8 @@ def encode_base_k(n, m, k):
 
 Below are two examples.
 
-**1) ABC 404 D – Goin’ to the Zoo**  
+**1) [ABC 404 D – Goin’ to the Zoo](https://atcoder.jp/contests/abc404/tasks/abc404_d)**
+
 Since n≤10, we can brute‑force all masks from 0 to 3^n-1. Each ternary digit tells us how many times we visit that zoo (0, 1, or 2). We tally up the total cost and count how many times each animal is seen. If every animal is seen at least twice, we update our answer with the minimum cost.
 
 ```python
@@ -62,7 +63,8 @@ for mask in range(3**n):
 print(best)
 ```
 
-**2) LC 1931 – Painting a Grid With Three Different Colors**
+**2) [LC 1931 – Painting a Grid With Three Different Colors](https://leetcode.com/problems/painting-a-grid-with-three-different-colors)**
+
 We encode each row of length mm as a base‑3 mask, where digits 0, 1, 2 represent the three colors. First, we generate all valid masks (no two adjacent cells share the same color) and initialize `dp[mask] = 1` for those. Next, we precompute which pairs of valid masks can go one above the other (no matching digits in any column). Finally, we iterate through the n rows: for each mask j, we sum over all compatible previous masks k, updating a new DP state. After n steps, the sum of `dp` values gives the total number of valid colorings modulo 10^9+7.
 
 ```python
@@ -111,3 +113,6 @@ class Solution:
 ```
 
 Ternary (and, more generally, base‑k) mask DP lets you pack multi‑state decisions into a single integer, iterate cleanly over all possibilities, and handle compatibility with simple digit‑by‑digit checks. It’s a powerful pattern for grids, colorings, tilings, and any situation where each element has a few discrete states.
+
+---
+*If you have any doubts or suggestions or just want to interact with me, use the comment section below (Refresh if comments don't load)*
