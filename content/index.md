@@ -9,7 +9,7 @@ date: 2025-02-16
 
 # Welcome to My Digital Garden
 
-Hello! I'm Grecil, a pre-final year CSE student at VIT Chennai. Welcome to my little corner of the internet where I share my thoughts, document my learning journey, and showcase my projects.
+Hello! I'm Grecil, a pre-final year CSE student at VIT Chennai. Welcome to my little corner of the internet where I share my thoughts, document my learning journey, and showcase my projects. Here's my [Resume](https://raw.githubusercontent.com/Grecil/digital-garden/v4/content/Grecil_Resume.pdf)
 
 ## What This Website Is About
 

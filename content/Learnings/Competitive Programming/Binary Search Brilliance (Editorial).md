@@ -399,13 +399,13 @@ print(low % (10**9 + 7))
 ---
 ## Complexity Analysis
 
-3. **Binary Search on `X`**
+1. **Binary Search on `X`**
     - We search over a range `[min(a, b), n * min(a, b)]`.
     - Since `a, b ≤ 40,000`, the maximum search space is at most **10¹⁴**.
     - Binary search runs in **O(log 10¹⁴) ≈ O(45)** operations.
-4. **Computing `count_multiples(X)`**
+2. **Computing `count_multiples(X)`**
     - Each call takes **O(1)** time using division and LCM.
-5. **Total Complexity**
+3. **Total Complexity**
     - **Binary Search Calls:** `O(log (n * min(a, b)))`
     - **Each Call:** `O(1)`
     - **Final Complexity:** `O(log (n * min(a, b))) ≈ O(45)`, which is **very efficient** for large inputs.
