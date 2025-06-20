@@ -30,11 +30,14 @@ I'm always excited to meet fellow tech enthusiasts and like-minded individuals. 
 
 - **Competitive Programming Profiles:**  
   - **Codeforces:** [Grecil on Codeforces](https://codeforces.com/profile/grecil)  
-  - **CodeChef:** [Grecil on CodeChef](https://www.codechef.com/users/grecil)  
-  - **LeetCode:** [Grecil on LeetCode](https://leetcode.com/grecil)
+  - **Codechef:** [Grecil on CodeChef](https://www.codechef.com/users/grecil)  
+  - **Leetcode:** [Grecil on LeetCode](https://leetcode.com/grecil)
   - **Atcoder:** [Grecil on Atcoder](https://atcoder.jp/users/grecil)
 
+  
+[Visit the VIT friends webring](https://404salad.github.io/webring)
+
 ---
-*Thanks for stopping by!* [Visit the VIT friends webring](https://404salad.github.io/webring)
+*Thanks for stopping by!*
 
 
