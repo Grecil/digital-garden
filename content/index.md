@@ -28,13 +28,16 @@ I'm always excited to meet fellow tech enthusiasts and like-minded individuals. 
 - **LinkedIn:**  
   [Connect on LinkedIn](https://linkedin.com/in/grecil)
 
+- **X/Twitter:**
+  [Grecil's X/Twitter](https://x.com/grecil_)
+
 - **Competitive Programming Profiles:**  
   - **Codeforces:** [Grecil on Codeforces](https://codeforces.com/profile/grecil)  
   - **CodeChef:** [Grecil on CodeChef](https://www.codechef.com/users/grecil)  
-  - **LeetCode:** [Grecil on LeetCode](https://leetcode.com/grecil/)
+  - **LeetCode:** [Grecil on LeetCode](https://leetcode.com/grecil)
+  - **Atcoder:** [Grecil on Atcoder](https://atcoder.jp/users/grecil)
 
 ---
-
-*Thanks for stopping by!*
+*Thanks for stopping by!* [Visit the VIT friends webring](https://404salad.github.io/webring)
 
 
