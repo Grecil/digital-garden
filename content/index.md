@@ -22,14 +22,11 @@ This website is my digital garden—a space where I:
 
 I'm always excited to meet fellow tech enthusiasts and like-minded individuals. Feel free to explore my profiles on different platforms:
 
-- **GitHub:**  
-  [Grecil's GitHub](https://github.com/Grecil)
+- **GitHub:**  [Grecil's GitHub](https://github.com/Grecil)
 
-- **LinkedIn:**  
-  [Connect on LinkedIn](https://linkedin.com/in/grecil)
+- **LinkedIn:**   [Connect on LinkedIn](https://linkedin.com/in/grecil)
 
-- **X/Twitter:**
-  [Grecil's X/Twitter](https://x.com/grecil_)
+- **X/Twitter:**  [Grecil's X/Twitter](https://x.com/grecil_)
 
 - **Competitive Programming Profiles:**  
   - **Codeforces:** [Grecil on Codeforces](https://codeforces.com/profile/grecil)  
