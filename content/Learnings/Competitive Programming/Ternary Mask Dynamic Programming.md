@@ -5,6 +5,9 @@ tags:
   - competitive-programming
   - dp
   - learnings
+  - atcoder
+  - leetcode
+  - maths
 date: 2025-05-18
 ---
 

@@ -6,6 +6,7 @@ tags:
   - greedy
   - binary-search
   - learnings
+  - maths
 date: 2025-02-16
 ---
 # Introduction
