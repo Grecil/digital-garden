@@ -47,7 +47,9 @@ In Python, the hash of a complex number is defined. If you want to compare two c
 ComplexLess = lambda a, b: a.real < b.real if a.real != b.real else a.imag < b.imag
 ```
 
+
 or 
+
 
 ```python
 ComplexLess = lambda a, b: (a.real, a.imag) < (b.real, b.imag)
@@ -107,7 +109,7 @@ int main() {
         {'D', ci( 0, -1)}
     };
 
-    map<ci, ll, ComplexLess<long long>> cnt;
+    map<ci, ll, ComplexLess<ll>> cnt;
     ci pos{0, 0};
     cnt[pos] = 1;
 
@@ -194,7 +196,7 @@ int main() {
         arr.push_back(pos);
     }
 
-    set<ci, ComplexLess<long long>> seen;
+    set<ci, ComplexLess<ll>> seen;
     seen.insert(ci(0, 0));
 
     string ans;
@@ -284,7 +286,7 @@ int main() {
             arr[i + 1] = arr[i] + d[s[i]];
         }
 
-        map<ci, int, ComplexLess<long long>> last;
+        map<ci, int, ComplexLess<ll>> last;
         int mn = INT_MAX;
         pair<int,int> ans = {-1, -1};
 
@@ -410,6 +412,139 @@ int main() {
         else lo = mid + 1;
     }
     cout << lo;
+    return 0;
+}
+```
+
+## 5) [CF 1902D - Robot Queries](https://codeforces.com/contest/1902/problem/D)
+
+This problem asks whether a robot visits a target point when executing commands with a specific substring reversed. The key insight is that reversing a substring splits the path into three segments: prefix (before reversal), reversed middle section, and suffix (after reversal).
+
+We precompute prefix sums for both the original sequence and its complete reverse to handle these segments efficiently. For any query with reversal range \[l, r\], we check two cases: either the target is reached in the unchanged portions (prefix or suffix), or it's reached within the reversed middle section.
+
+For the first case, we check if the target position appears in our original prefix sums outside the reversal range. For the second case, we calculate the position offset needed to account for the path change caused by reversal, then check if the adjusted target appears in our reversed sequence's prefix sums within the appropriate time window.
+
+### Python
+
+```python
+from itertools import accumulate
+from collections import defaultdict
+from bisect import bisect_left as bsl
+
+d = {"L": -1, "R": 1, "U": 1j, "D": -1j}
+n, q = map(int, input().split())
+s = input()
+arr = [0, *accumulate(d[i] for i in s)]
+brr = [0, *accumulate(d[i] for i in s[::-1])]
+da = defaultdict(list)
+db = defaultdict(list)
+for i in range(n + 1):
+    da[arr[i]].append(i)
+    db[brr[i]].append(i)
+for i in range(q):
+    x, y, l, r = map(int, input().split())
+    off = brr[n - r] - arr[l - 1]
+    dest = x + y * 1j
+    if dest in da and (da[dest][0] < l or da[dest][-1] > r):
+        print("YES")
+    elif dest + off in db:
+        pos = bsl(db[dest + off], n - r + 1)
+        if pos < len(db[dest + off]):
+            if db[dest + off][pos] <= n - l + 1:
+                print("YES")
+            else:
+                print("NO")
+        else:
+            print("NO")
+    else:
+        print("NO")
+```
+
+### C++
+
+```c++
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ci = complex<ll>;
+
+template <typename T>
+struct ComplexLess {
+    bool operator()(const complex<T>& a, const complex<T>& b) const noexcept {
+        if (a.real() != b.real()) return a.real() < b.real();
+        return a.imag() < b.imag();
+    }
+};
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, q;
+    cin >> n >> q;
+    string s;
+    cin >> s;
+
+    map<char, ci> d = {
+        {'L', ci(-1,  0)},
+        {'R', ci( 1,  0)},
+        {'U', ci( 0,  1)},
+        {'D', ci( 0, -1)}
+    };
+
+    vector<ci> arr(n+1);
+    arr[0] = {0, 0};
+    for (int i = 0; i < n; ++i) {
+        arr[i+1] = arr[i] + d[s[i]];
+    }
+
+    vector<ci> brr(n+1);
+    brr[0] = {0, 0};
+    for (int i = 1; i <= n; ++i) {
+        char mv = s[n - i];
+        brr[i] = brr[i-1] + d[mv];
+    }
+
+    map<ci, vector<int>, ComplexLess<ll>> da, db;
+    for (int i = 0; i <= n; ++i) {
+        da[arr[i]].push_back(i);
+        db[brr[i]].push_back(i);
+    }
+
+    while (q--) {
+        ll x, y;
+        int l, r;
+        cin >> x >> y >> l >> r;
+
+        ci dest(x, y);
+
+        ci off = brr[n-r] - arr[l-1];
+
+        auto it_da = da.find(dest);
+        if (it_da != da.end()) {
+            const auto &v = it_da->second;
+            if (v.front() < l || v.back() > r) {
+                cout << "YES\n";
+                continue;
+            }
+        }
+
+        ci key = dest + off;
+        auto it_db = db.find(key);
+        if (it_db != db.end()) {
+            const auto &v = it_db->second;
+            int lo = n - r + 1;
+            int hi = n - l + 1;
+            auto pos = lower_bound(v.begin(), v.end(), lo);
+            if (pos != v.end() && *pos <= hi) {
+                cout << "YES\n";
+                continue;
+            }
+        }
+
+        cout << "NO\n";
+    }
+
     return 0;
 }
 ```
