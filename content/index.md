@@ -35,7 +35,7 @@ I'm always excited to meet fellow tech enthusiasts and like-minded individuals. 
   - **Atcoder:** [Grecil on Atcoder](https://atcoder.jp/users/grecil)
 
   
-<a href="https://404salad.github.io/webring/Grecil/previous">⟵</a>  <a href="https://404salad.github.io/webring">webring</a>  <a href="https://404salad.github.io/webring/Grecil/next">⟶</a>
+<center><a href="https://404salad.github.io/webring/Grecil/previous">⟵</a>        <a href="https://404salad.github.io/webring">webring</a>        <a href="https://404salad.github.io/webring/Grecil/next">⟶</a></center>
 
 ---
 *Thanks for stopping by!*
