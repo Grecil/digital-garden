@@ -254,7 +254,7 @@ for _ in range(q):
 1. **Preprocessing (Reading & Sorting)**: `O(N)`.
 2. **Binary Search on Range `[1, 10^{18}]`**: `O(log 10^{18}) = O(60)`.
 3. **`bisect_right` for each query**: `O(log N)`.
-4. **Total Complexity per query**: `O(log 10^{18} + log N) ≈ O(60 + 17) ≈ O(77)`.
+4. **Total Complexity per query**: `O(log 10^{18} * log N)`.
 
 ---
 # E. Pulling a Boeing but on Lifts
