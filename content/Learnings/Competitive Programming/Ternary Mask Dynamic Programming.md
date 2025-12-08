@@ -115,7 +115,7 @@ class Solution:
         return sum(dp.values()) % mod
 ```
 
-**3) [CF Gym 104493 A - Gym Plates](https://codeforces.com/gym/104493/problem/A)
+**3) [CF Gym 104493 A - Gym Plates](https://codeforces.com/gym/104493/problem/A)**
 
 We treat each decimal digit’s count (0–2) as a ternary digit and keep a DP over masks $(0..3^{10}-1)$. For each weight we build `cur`, a decimal number whose digit (d) is the count of digit (d) in that weight and use `encode` to convert a DP mask into the same decimal-digit format so we can add them component wise. If `valid(tot)` (no digit >2) we `decode` back to a ternary mask and relax `dp[new_mask] = max(...)`; iterating masks in descending order makes it a 0/1 choice for each weight.
 
