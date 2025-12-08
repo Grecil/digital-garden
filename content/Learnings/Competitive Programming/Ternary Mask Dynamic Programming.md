@@ -24,7 +24,7 @@ def encode_base_k(n, m, k):
     return nums + [0] * (m - len(nums))
 ```
 
-Below are two examples.
+Below are three examples.
 
 **1) [ABC 404 D – Goin’ to the Zoo](https://atcoder.jp/contests/abc404/tasks/abc404_d)**
 
@@ -68,7 +68,7 @@ print(best)
 
 **2) [LC 1931 – Painting a Grid With Three Different Colors](https://leetcode.com/problems/painting-a-grid-with-three-different-colors)**
 
-We encode each row of length mm as a base‑3 mask, where digits 0, 1, 2 represent the three colors. First, we generate all valid masks (no two adjacent cells share the same color) and initialize `dp[mask] = 1` for those. Next, we precompute which pairs of valid masks can go one above the other (no matching digits in any column). Finally, we iterate through the n rows: for each mask j, we sum over all compatible previous masks k, updating a new DP state. After n steps, the sum of `dp` values gives the total number of valid colorings modulo 10^9+7.
+We encode each row of length m as a base‑3 mask, where digits 0, 1, 2 represent the three colors. First, we generate all valid masks (no two adjacent cells share the same color) and initialize `dp[mask] = 1` for those. Next, we precompute which pairs of valid masks can go one above the other (no matching digits in any column). Finally, we iterate through the n rows: for each mask j, we sum over all compatible previous masks k, updating a new DP state. After n steps, the sum of `dp` values gives the total number of valid colorings modulo 10^9+7.
 
 ```python
 from functools import cache
@@ -113,6 +113,64 @@ class Solution:
             dp = new_dp
 
         return sum(dp.values()) % mod
+```
+
+**3) [CF Gym 104493 A - Gym Plates](https://codeforces.com/gym/104493/problem/A)
+
+We treat each decimal digit’s count (0–2) as a ternary digit and keep a DP over masks $(0..3^{10}-1)$. For each weight we build `cur`, a decimal number whose digit (d) is the count of digit (d) in that weight and use `encode` to convert a DP mask into the same decimal-digit format so we can add them component wise. If `valid(tot)` (no digit >2) we `decode` back to a ternary mask and relax `dp[new_mask] = max(...)`; iterating masks in descending order makes it a 0/1 choice for each weight.
+
+```python
+from functools import cache
+
+@cache
+def encode(x):
+    num, i = 0, 1
+    while x:
+        x, r = divmod(x, 3)
+        num += i * r
+        i *= 10
+    return num
+
+@cache
+def decode(num):
+    x = i = 0
+    while num:
+        x += (num % 10) * (3**i)
+        num //= 10
+        i += 1
+    return x
+
+@cache
+def valid(x):
+    while x:
+        if x % 10 > 2:
+            return False
+        x //= 10
+    return True
+
+for _ in range(int(input())):
+    n = int(input())
+    w = [*map(int, input().split())]
+    
+    dp = [-1] * (3**10)
+    dp[0] = 0
+    
+    for wi in w:
+        cur, x = 0, wi
+        while x:
+            cur += 10 ** (x % 10)
+            x //= 10
+        if not valid(cur):
+            continue
+        for i in range(3**10 - 1, -1, -1):
+            if dp[i] != -1:
+                tot = cur + encode(i)
+                if not valid(tot):
+                    continue      
+                j = decode(tot)
+                dp[j] = max(dp[j], dp[i] + wi)
+                
+    print(max(dp))
 ```
 
 Ternary (and, more generally, base‑k) mask DP lets you pack multi‑state decisions into a single integer, iterate cleanly over all possibilities, and handle compatibility with simple digit‑by‑digit checks. It’s a powerful pattern for grids, colorings, tilings, and any situation where each element has a few discrete states.
